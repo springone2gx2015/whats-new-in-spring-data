@@ -27,6 +27,7 @@
 		<module>09-rest-headers</module>
 		<module>10-rest-hal-browser</module>
 		<module>11-key-value</module>
+		<module>12-redis</module>
 	</modules>
 
 	<properties>
