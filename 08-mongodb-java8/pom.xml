@@ -2,9 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-data-mongodb-java8</artifactId>
-	<name>What's new in Spring Data? - MongoDB &amp; Java 8</name>
-
 	<parent>
 		<groupId>com.springone2gx.2015</groupId>
 		<artifactId>whats-new-in-spring-data</artifactId>
@@ -12,9 +9,12 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
+	<artifactId>spring-data-mongodb-java8-support</artifactId>
+	<name>What's new in Spring Data? - MongoDB &amp; Java 8</name>
+
 	<dependencies>
 
-		<!--  MongoDB -->
+		<!-- MongoDB -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
