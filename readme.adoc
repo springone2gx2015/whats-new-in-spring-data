@@ -1,0 +1,3 @@
+= What's new in Spring Data?
+
+image:https://travis-ci.org/springone2gx2015/whats-new-in-spring-data.svg?branch=master["Build Status", link="https://travis-ci.org/springone2gx2015/whats-new-in-spring-data"]
