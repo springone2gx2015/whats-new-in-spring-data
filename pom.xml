@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.springone2gx.2015</groupId>
+	<artifactId>whats-new-in-spring-data</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>What's new in Spring Data?</name>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.3.0.M5</version>
+	</parent>
+
+	<modules>
+		<module>01-intro</module>
+		<module>02-bom</module>
+		<module>03-web-projection</module>
+		<module>04-querydsl-web</module>
+		<module>05-jpa-java8</module>
+		<module>06-jpa-entity-graph</module>
+		<module>07-mongodb-security</module>
+		<module>08-mongodb-java8</module>
+		<module>09-rest-headers</module>
+		<module>10-rest-hal-browser</module>
+		<module>11-key-value</module>
+	</modules>
+
+	<properties>
+
+		<apt.version>1.1.3</apt.version>
+		<java.version>1.8</java.version>
+		<querydsl.version>3.6.7</querydsl.version>
+
+	</properties>
+
+	<developers>
+		<developer>
+			<id>ogierke</id>
+			<name>Oliver Gierke</name>
+			<email>ogierke@pivotal.io</email>
+		</developer>
+		<developer>
+			<id>tdarimont</id>
+			<name>Thomas Darimont</name>
+			<email>tdarimont@gopivotal.io</email>
+		</developer>
+	</developers>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.6</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<compilerArgument>-parameters</compilerArgument>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<repositories>
+		<repository>
+			<id>spring-libs-snapshot</id>
+			<url>https://repo.spring.io/libs-snapshot</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-libs-snapshot</id>
+			<url>https://repo.spring.io/libs-snapshot</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>
