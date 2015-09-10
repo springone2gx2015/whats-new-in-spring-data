@@ -2,16 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-data-rest-headers</artifactId>
-
-	<name>What's new in Spring Data? - REST headers</name>
-
 	<parent>
 		<groupId>com.springone2gx.2015</groupId>
 		<artifactId>whats-new-in-spring-data</artifactId>
 		<version>1.0.0.BUILD-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+
+	<artifactId>spring-data-rest-headers-support</artifactId>
+	<name>What's new in Spring Data? - REST headers</name>
 
 	<dependencies>
 

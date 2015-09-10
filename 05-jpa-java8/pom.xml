@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>spring-data-jpa-java8</artifactId>
+	<artifactId>spring-data-jpa-java8-support</artifactId>
 	<name>What's new in Spring Data? - JPA &amp; Java 8</name>
 
 	<dependencies>
