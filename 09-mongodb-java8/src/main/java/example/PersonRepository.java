@@ -29,6 +29,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 interface PersonRepository extends CrudRepository<Person, String> {
 
+	@Override
 	List<Person> findAll();
 
 	@Query("{}")
