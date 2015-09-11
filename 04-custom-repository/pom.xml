@@ -9,8 +9,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>spring-data-jpa-java8</artifactId>
-	<name>What's new in Spring Data? - JPA &amp; Java 8</name>
+	<artifactId>spring-data-custom-repository</artifactId>
+	<name>What's new in Spring Data? - Custom repository</name>
 
 	<dependencies>
 
@@ -22,7 +22,6 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

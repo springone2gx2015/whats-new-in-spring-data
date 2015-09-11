@@ -1,17 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<artifactId>spring-data-redis-demo</artifactId>
-
-	<name>What's new in Spring Data? - Redis</name>
-
 	<parent>
 		<groupId>com.springone2gx.2015</groupId>
 		<artifactId>whats-new-in-spring-data</artifactId>
 		<version>1.0.0.BUILD-SNAPSHOT</version>
 	</parent>
-
+	<artifactId>spring-data-redis-demo</artifactId>
+	<name>spring-data-redis-demo</name>
 
 	<dependencies>
 
@@ -38,7 +34,7 @@
 			<version>0.6</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
