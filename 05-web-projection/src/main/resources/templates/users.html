@@ -47,7 +47,7 @@
 				<label for="repeatedPassword">Password (repeated)</label><br />
 				<input type="password" th:field="*{repeatedPassword}" class="form-control" th:errorclass="fieldError" required="required" />
 			</div>
-			<input type="submit" class="btn btn-default" value="Register user" />
+			<input type="submit" class="btn btn-default" value="Register user" onclick="form.submit(); form.reset(); return false"/>
 		</form>
 	</body>
 </html>
