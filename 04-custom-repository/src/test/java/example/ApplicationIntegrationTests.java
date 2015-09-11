@@ -44,7 +44,7 @@ public class ApplicationIntegrationTests {
 	@Autowired CustomerRepository repository;
 
 	@Test
-	public void providesFindOneWithOptional() {
+	public void shouldInvokeMethodOnCustomRepository() {
 
 		Customer carter = repository.save(new Customer("Carter", "Beauford", "carter@dmband.com"));
 
