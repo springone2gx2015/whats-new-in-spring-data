@@ -18,7 +18,6 @@ package example;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -30,7 +29,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.query.spi.EvaluationContextExtension;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -83,8 +82,7 @@ public class PersonRepositoryIntegrationTest {
 	@Test
 	public void adminCallingShouldReturnAllUsers() throws Exception {
 
-		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(admin, "x",
-				Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN")));
+		UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(admin, "x", AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
 		SecurityContextHolder.getContext().setAuthentication(auth);
 
 		List<Person> persons = repository.findAllForCurrentUserById();
