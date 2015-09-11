@@ -13,12 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.fetchgraph;
+package example.fetchgraph;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * @author Thomas Darimont
+ * @author Oliver Gierke
  */
-@SpringBootApplication
-class FetchGraphConfiguration {}
+@Data
+@Entity
+@RequiredArgsConstructor
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+public class Tag {
+
+	private @GeneratedValue @Id Long id;
+	private final String name;
+}

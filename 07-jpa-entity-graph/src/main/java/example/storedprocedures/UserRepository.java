@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.storedprocedures;
+package example.storedprocedures;
 
 import javax.persistence.EntityManager;
 
@@ -27,7 +27,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author Oliver Gierke
  * @author Thomas Darimont
  */
-public interface UserRepository extends CrudRepository<User, Long> {
+interface UserRepository extends CrudRepository<User, Long> {
 
 	/**
 	 * Explicitly mapped to named stored procedure {@code User.plus1IO} in the {@link EntityManager}

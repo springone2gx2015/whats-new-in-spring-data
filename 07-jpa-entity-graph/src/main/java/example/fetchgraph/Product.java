@@ -13,7 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.fetchgraph;
+package example.fetchgraph;
+
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,27 +33,19 @@ import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * @author Thomas Darimont
  */
 @Data
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 @NamedEntityGraphs(@NamedEntityGraph(name = "product-with-tags", attributeNodes = { @NamedAttributeNode("tags") }))
 public class Product {
 
-	@Id @GeneratedValue//
-	Long id;
+	private @GeneratedValue @Id Long id;
+	private final String name;
 
-	String name;
-
-	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Tag.class, cascade = CascadeType.ALL)//
-	Set<Tag> tags = new HashSet<>();
-
-	public Product(String name) {
-		this.name = name;
-	}
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity = Tag.class, cascade = CascadeType.ALL) //
+	private final Set<Tag> tags = new HashSet<>();
 }

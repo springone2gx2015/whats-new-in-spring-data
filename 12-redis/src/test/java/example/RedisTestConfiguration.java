@@ -1,4 +1,3 @@
-package example;
 /*
  * Copyright 2015 the original author or authors.
  *
@@ -14,6 +13,7 @@ package example;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package example;
 
 import javax.annotation.PreDestroy;
 
@@ -29,21 +29,21 @@ public class RedisTestConfiguration {
 
 	@Autowired RedisConnectionFactory factory;
 
-//	@Bean
-//	RedisConnectionFactory redisConnectionFactory() {
-//		return new LettuceConnectionFactory();
-//	}
-//
-//	@Bean
-//	RedisOperations<String, String> redisOperations(RedisConnectionFactory rcf) {
-//
-//		RedisTemplate<String, String> rt = new RedisTemplate<>();
-//		rt.setConnectionFactory(rcf);
-//		rt.setKeySerializer(new StringRedisSerializer());
-//		rt.setValueSerializer(new StringRedisSerializer());
-//		
-//		return rt;
-//	}
+	// @Bean
+	// RedisConnectionFactory redisConnectionFactory() {
+	// return new LettuceConnectionFactory();
+	// }
+	//
+	// @Bean
+	// RedisOperations<String, String> redisOperations(RedisConnectionFactory rcf) {
+	//
+	// RedisTemplate<String, String> rt = new RedisTemplate<>();
+	// rt.setConnectionFactory(rcf);
+	// rt.setKeySerializer(new StringRedisSerializer());
+	// rt.setValueSerializer(new StringRedisSerializer());
+	//
+	// return rt;
+	// }
 
 	/**
 	 * Clear database before shut down.

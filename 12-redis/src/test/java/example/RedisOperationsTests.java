@@ -15,34 +15,32 @@
  */
 package example;
 
-import java.util.Set;
+import redis.embedded.RedisServer;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisZSetCommands.Range;
 import org.springframework.data.redis.core.BoundZSetOperations;
 import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import redis.embedded.RedisServer;
 
 /**
  * @author Thomas Darimont
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { RedisTestConfiguration.class })
+@SpringApplicationConfiguration(RedisTestConfiguration.class)
 public class RedisOperationsTests {
 
-	private RedisServer redisServer;
+	RedisServer redisServer;
 
-	@Autowired private RedisConnectionFactory redisConnectionFactory;
-	@Autowired private RedisOperations<String, String> redis;
+	@Autowired RedisConnectionFactory redisConnectionFactory;
+	@Autowired RedisOperations<String, String> redis;
 
 	@Before
 	public void setup() throws Exception {
@@ -59,35 +57,34 @@ public class RedisOperationsTests {
 	@Test
 	public void zrangeByLex() {
 
-		 BoundZSetOperations<String, String> zsets = redis.boundZSetOps("myzset");
-		 zsets.add("a", 0.0);
-		 zsets.add("b", 0.0);
-		 zsets.add("c", 0.0);
-		 zsets.add("d", 0.0);
-		 zsets.add("e", 0.0);
-		 zsets.add("f", 0.0);
-		 zsets.add("g", 0.0);
-		 zsets.persist();
+		BoundZSetOperations<String, String> zsets = redis.boundZSetOps("myzset");
+
+		zsets.add("a", 0.0);
+		zsets.add("b", 0.0);
+		zsets.add("c", 0.0);
+		zsets.add("d", 0.0);
+		zsets.add("e", 0.0);
+		zsets.add("f", 0.0);
+		zsets.add("g", 0.0);
+
+		zsets.persist();
 
 		RedisConnection redisConnection = redisConnectionFactory.getConnection();
 
-		Set<byte[]> result = redisConnection.zRangeByLex("myzset".getBytes(), Range.range().lte("c"));
-		for (byte[] item : result) {
-			System.out.println(new String(item));
-		}
+		redisConnection.zRangeByLex("myzset".getBytes(), Range.range().lte("c")).stream().//
+				map(it -> new String(it)).//
+				forEach(System.out::println);
 
 		System.out.println("###");
 
-		Set<byte[]> result2 = redisConnection.zRangeByLex("myzset".getBytes(), Range.range().lt("c"));
-		for (byte[] item : result2) {
-			System.out.println(new String(item));
-		}
+		redisConnection.zRangeByLex("myzset".getBytes(), Range.range().lt("c")).stream().//
+				map(it -> new String(it)).//
+				forEach(System.out::println);
 
 		System.out.println("###");
 
-		Set<byte[]> result3 = redisConnection.zRangeByLex("myzset".getBytes(), Range.range().gt("aaa").lt("g"));
-		for (byte[] item : result3) {
-			System.out.println(new String(item));
-		}
+		redisConnection.zRangeByLex("myzset".getBytes(), Range.range().gt("aaa").lt("g")).stream().//
+				map(it -> new String(it)).//
+				forEach(System.out::println);
 	}
 }

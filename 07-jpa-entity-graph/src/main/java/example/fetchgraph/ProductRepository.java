@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.fetchgraph;
+package example.fetchgraph;
 
 import javax.persistence.FetchType;
 import javax.persistence.NamedEntityGraph;
 
 import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author Thomas Darimont
  */
-public interface ProductRepository extends JpaRepository<Product, Long> {
+interface ProductRepository extends CrudRepository<Product, Long> {
 
 	/**
 	 * Here we use the {@link EntityGraph} annotation to specify that we want to use the {@link NamedEntityGraph}

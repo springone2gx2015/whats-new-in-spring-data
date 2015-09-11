@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.storedprocedures;
+package example.storedprocedures;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import example.storedprocedures.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;

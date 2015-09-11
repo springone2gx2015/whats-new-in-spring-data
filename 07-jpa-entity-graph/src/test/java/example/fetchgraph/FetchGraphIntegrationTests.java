@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package example.springdata.jpa.fetchgraph;
+package example.fetchgraph;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import java.util.Collections;
 
 import javax.persistence.EntityManager;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,11 +37,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-@SpringApplicationConfiguration(classes = FetchGraphConfiguration.class)
+@SpringApplicationConfiguration
 public class FetchGraphIntegrationTests {
 
-	@Autowired EntityManager em;
+	@SpringBootApplication
+	static class Config {}
 
+	@Autowired EntityManager em;
 	@Autowired ProductRepository repository;
 
 	@Test
@@ -51,8 +53,8 @@ public class FetchGraphIntegrationTests {
 		Collections.addAll(xps.getTags(), new Tag("cool"), new Tag("macbook-killer"), new Tag("speed"));
 
 		xps = repository.save(xps);
-		repository.flush();
 
+		em.flush();
 		em.detach(xps);
 
 		Product loadedXps = repository.findOne(xps.getId());
@@ -65,10 +67,10 @@ public class FetchGraphIntegrationTests {
 			System.out.println(expected.getMessage());
 		}
 
-		//here we use the findOneById that uses a NamedEntityGraph
+		// Here we use the findOneById that uses a NamedEntityGraph
 		Product loadedXpsWithFetchGraph = repository.findOneById(xps.getId());
 
-		Assert.assertThat(loadedXpsWithFetchGraph.getTags(), hasSize(3));
+		assertThat(loadedXpsWithFetchGraph.getTags(), hasSize(3));
 	}
 
 	@Test
@@ -78,8 +80,8 @@ public class FetchGraphIntegrationTests {
 		Collections.addAll(xps.getTags(), new Tag("cool"), new Tag("macbook-killer"), new Tag("speed"));
 
 		xps = repository.save(xps);
-		repository.flush();
 
+		em.flush();
 		em.detach(xps);
 
 		Product loadedXps = repository.findOne(xps.getId());
@@ -92,9 +94,9 @@ public class FetchGraphIntegrationTests {
 			System.out.println(expected.getMessage());
 		}
 
-		//here we use getOneById which uses an ad-hoc declarative fetch graph definition
+		// Here we use getOneById which uses an ad-hoc declarative fetch graph definition
 		Product loadedXpsWithFetchGraph = repository.getOneById(xps.getId());
 
-		Assert.assertThat(loadedXpsWithFetchGraph.getTags(), hasSize(3));
+		assertThat(loadedXpsWithFetchGraph.getTags(), hasSize(3));
 	}
 }
