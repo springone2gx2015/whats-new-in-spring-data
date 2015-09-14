@@ -29,6 +29,7 @@
 		<module>11-rest-hal-browser</module>
 		<module>12-redis</module>
 		<module>13-key-value</module>
+		<module>14-redis-repositories</module>
 	</modules>
 
 	<properties>
