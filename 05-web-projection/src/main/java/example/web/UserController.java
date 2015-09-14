@@ -17,12 +17,6 @@ package example.web;
 
 import static org.springframework.validation.ValidationUtils.*;
 
-import example.Password;
-import example.User;
-import example.UserManagement;
-import example.Username;
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +39,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import example.Password;
+import example.User;
+import example.UserManagement;
+import example.Username;
+import lombok.RequiredArgsConstructor;
+
 /**
  * A sample controller implementation to showcase Spring Data web support:
  * <ol>
@@ -65,7 +65,7 @@ class UserController {
 	private final ProjectionFactory projections;
 
 	/**
-	 * Equis the model with a {@link Page} of {@link User}s. Spring Data automatically populates the {@link Pageable} from
+	 * Equips the model with a {@link Page} of {@link User}s. Spring Data automatically populates the {@link Pageable} from
 	 * request data according to the setup of {@link PageableHandlerMethodArgumentResolver}. Note how the defaults can be
 	 * tweaked by using {@link PageableDefault}.
 	 * 
@@ -122,7 +122,12 @@ class UserController {
 	/**
 	 * Returns the first page of {@link User}s as JSON representation. Note how we leverage the {@link ProjectionFactory}
 	 * to wrap each result into the {@link UsernamesOnly} projection.
+	 *
 	 * 
+	 * curl -H "Content-type: application/json" -H "Accept: application/json"  http://localhost:8080/users
+	 * 
+	 * http --json http://localhost:8080/users 
+
 	 * @return
 	 */
 	@ResponseBody
