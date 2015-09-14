@@ -18,10 +18,6 @@ package example;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import example.Vehicle.Car;
-import example.Vehicle.Truck;
-import redis.embedded.RedisServer;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,6 +32,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import example.Vehicle.Car;
+import example.Vehicle.Truck;
+import redis.embedded.RedisServer;
 
 /**
  * @author Thomas Darimont
@@ -85,16 +85,22 @@ public class ObjectSerializationTests {
 
 		// monitor commands sent to redis via redis-cli > monitor
 
-		Vehicle car = new Car();
+		Car car = new Car();
 		car.setBrand("Porsche");
 
-		Vehicle truck = new Truck();
+		Truck truck = new Truck();
 		truck.setBrand("MAN");
 
 		redis.opsForValue().set("v1", car);
 		redis.opsForValue().set("v2", truck);
 
-		assertThat(redis.opsForValue().get("v1"), is(car));
-		assertThat(redis.opsForValue().get("v2"), is(truck));
+		Object v1 = redis.opsForValue().get("v1");
+		Object v2 = redis.opsForValue().get("v2");
+
+		assertThat(v1, is(car));
+		assertThat(v2, is(truck));
+
+//		assertThat(v1, is(instanceOf(Car.class)));
+//		assertThat(v2, is(instanceOf(Truck.class)));
 	}
 }
