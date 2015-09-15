@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * Repository to manage {@link Customer} instances.
@@ -28,7 +28,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Oliver Gierke
  * @author Thomas Darimont
  */
-interface CustomerRepository extends PagingAndSortingRepository<Customer, Long> {
+interface CustomerRepository extends CrudRepository<Customer, Long> {
 
 	Optional<Customer> findByEmail(String email);
 
