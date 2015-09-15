@@ -38,7 +38,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Integration test for {@link PersonRepository}.
  * 
  * @author Thomas Darimont
- * @authot Oliver Gierke
+ * @author Oliver Gierke
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration
