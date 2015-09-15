@@ -18,6 +18,10 @@ package example;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import example.Vehicle.Car;
+import example.Vehicle.Truck;
+import redis.embedded.RedisServer;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,13 +33,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import example.Vehicle.Car;
-import example.Vehicle.Truck;
-import redis.embedded.RedisServer;
 
 /**
  * @author Thomas Darimont
@@ -58,11 +58,11 @@ public class ObjectSerializationTests {
 			rt.setConnectionFactory(rcf);
 			rt.setKeySerializer(new StringRedisSerializer());
 
-			// Fixed to Vehicle type - no type information carried to redis
-			rt.setValueSerializer(new Jackson2JsonRedisSerializer<>(Vehicle.class));
+			// Fixed to Vehicle type - no type information carried to Redis
+			// rt.setValueSerializer(new Jackson2JsonRedisSerializer<>(Vehicle.class));
 
-			// Type is store in redis
-			// rt.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+			// Type is store in Redis
+			rt.setValueSerializer(new GenericJackson2JsonRedisSerializer());
 
 			return rt;
 		}
@@ -100,7 +100,7 @@ public class ObjectSerializationTests {
 		assertThat(v1, is(car));
 		assertThat(v2, is(truck));
 
-//		assertThat(v1, is(instanceOf(Car.class)));
-//		assertThat(v2, is(instanceOf(Truck.class)));
+		assertThat(v1, is(instanceOf(Car.class)));
+		assertThat(v2, is(instanceOf(Truck.class)));
 	}
 }
