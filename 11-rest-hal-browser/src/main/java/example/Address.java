@@ -17,6 +17,9 @@ package example;
 
 import static org.springframework.data.mongodb.core.index.GeoSpatialIndexType.*;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 import org.springframework.data.geo.Point;
@@ -28,6 +31,8 @@ import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
  * @author Oliver Gierke
  */
 @Value
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class Address {
 
 	private final String street, city, zip;
