@@ -30,11 +30,11 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
-			<version>1.6.0.DATAREDIS-425-SNAPSHOT</version>
+			<version>1.7.0.DATAREDIS-425-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 </project>
