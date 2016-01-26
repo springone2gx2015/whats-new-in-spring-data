@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 the original author or authors.
+ * Copyright 2015-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,10 @@ package example;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import redis.embedded.RedisServer;
-
 import java.util.Arrays;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +33,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author Thomas Darimont
+ * @author Oliver Gierke
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(RedisTestConfiguration.class)
 public class RedisRepositoryTests {
 
-	static RedisServer redisServer;
+	public static @ClassRule EmbeddedRedisRule embeddedRedis = new EmbeddedRedisRule();
 
 	@Autowired RedisConnectionFactory redisConnectionFactory;
 	@Autowired RedisOperations<String, String> redis;
@@ -50,25 +47,13 @@ public class RedisRepositoryTests {
 
 	@Autowired PersonRepository repository;
 
-	@BeforeClass
-	public static void startServer() throws Exception {
-		redisServer = new RedisServer(6379);
-		redisServer.start();
-	}
-
 	@Before
 	public void setup() {
 		kvTemplate.delete(Person.class);
 		kvTemplate.delete(City.class);
 	}
 
-	@AfterClass
-	public static void shutdownServer() {
-		redisServer.stop();
-	}
-
 	@Test
-	@Ignore
 	public void simpleFindByMultipleProperties() {
 
 		Person egwene = new Person();
