@@ -15,8 +15,6 @@
  */
 package example;
 
-import example.RedisTestConfiguration.CustomIndexConfiguration;
-
 import java.util.Arrays;
 
 import javax.annotation.PreDestroy;
@@ -26,7 +24,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.index.IndexConfiguration;
 import org.springframework.data.redis.core.index.RedisIndexDefinition;
+import org.springframework.data.redis.core.index.SimpleIndexDefinition;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+
+import example.RedisTestConfiguration.CustomIndexConfiguration;
 
 /**
  * @author Thomas Darimont
@@ -50,7 +51,7 @@ public class RedisTestConfiguration {
 
 		@Override
 		protected Iterable<RedisIndexDefinition> initialConfiguration() {
-			return Arrays.asList(new RedisIndexDefinition("persons", "lastname", "by-lastname"));
+			return Arrays.asList(new SimpleIndexDefinition("persons", "lastname"));
 		}
 	}
 }
