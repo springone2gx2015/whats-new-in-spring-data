@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 the original author or authors.
+ * Copyright 2015-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 package example;
 
+import example.RedisTestConfiguration.CustomIndexConfiguration;
+
 import java.util.Arrays;
 
 import javax.annotation.PreDestroy;
@@ -26,10 +28,9 @@ import org.springframework.data.redis.core.index.IndexConfiguration;
 import org.springframework.data.redis.core.index.RedisIndexDefinition;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
-import example.RedisTestConfiguration.CustomIndexConfiguration;
-
 /**
  * @author Thomas Darimont
+ * @author Oliver Gierke
  */
 @SpringBootApplication
 @EnableRedisRepositories(indexConfiguration = CustomIndexConfiguration.class)
@@ -49,7 +50,7 @@ public class RedisTestConfiguration {
 
 		@Override
 		protected Iterable<RedisIndexDefinition> initialConfiguration() {
-			return Arrays.asList(new RedisIndexDefinition("persons", "lastname"));
+			return Arrays.asList(new RedisIndexDefinition("persons", "lastname", "by-lastname"));
 		}
 	}
 }
