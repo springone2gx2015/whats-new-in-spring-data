@@ -21,10 +21,6 @@ import static org.springframework.restdocs.RestDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import example.Application;
-import example.Customer;
-import example.CustomerRepository;
-
 import java.net.URI;
 
 import org.junit.Before;
@@ -65,6 +61,8 @@ public class WebIntegrationTests {
 
 	@Test
 	public void executeConditionalGetRequests() throws Exception {
+
+		// TODO: 02 - Executing conditional requests
 
 		Customer customer = customers.findAll().iterator().next();
 		URI uri = new UriTemplate("/customers/{id}").expand(customer.getId());

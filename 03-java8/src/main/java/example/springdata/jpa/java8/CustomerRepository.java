@@ -55,6 +55,7 @@ public interface CustomerRepository extends Repository<Customer, Long> {
 	 * @param lastname
 	 * @return
 	 */
+	// TODO: 03 - Support for Optional (existed before)
 	Optional<Customer> findByLastname(String lastname);
 
 	/**
@@ -85,5 +86,6 @@ public interface CustomerRepository extends Repository<Customer, Long> {
 	Stream<Customer> findAllByLastnameIsNotNull();
 
 	@Async
+	// TODO: 04 - Support for CompletableFuture
 	CompletableFuture<List<Customer>> readAllBy();
 }

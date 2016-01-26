@@ -41,6 +41,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 @RequiredArgsConstructor
 public class Customer {
 
+	// TODO: 01 - Support for non-time-zoned JSR-310 types
+
 	private @Id @GeneratedValue Long id;
 	private @CreatedDate LocalDateTime createdDate;
 	private @LastModifiedDate LocalDateTime modifiedDate;

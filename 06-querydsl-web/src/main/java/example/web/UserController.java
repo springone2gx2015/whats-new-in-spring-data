@@ -49,6 +49,8 @@ class UserController {
 			@QuerydslPredicate(root = User.class) Predicate predicate, Pageable pageable, //
 			@RequestParam MultiValueMap<String, String> parameters) {
 
+		// TODO: 01 - Support for Querydsl predicates
+
 		ServletUriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
 		builder.replaceQueryParam("page", new Object[0]);
 

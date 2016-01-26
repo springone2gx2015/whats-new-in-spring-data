@@ -49,6 +49,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Customer {
 
 	private @GeneratedValue @Id Long id;
+
+	// TODO: 01 - ETag / Last modified date into headers
 	private @Version Long version;
 	private @JsonIgnore @LastModifiedDate LocalDateTime lastModifiedDate;
 

@@ -38,9 +38,17 @@ public interface UserRepository
 	 * @see org.springframework.data.querydsl.binding.QuerydslBinderCustomizer#customize(org.springframework.data.querydsl.binding.QuerydslBindings, com.mysema.query.types.EntityPath)
 	 */
 	@Override
-	default public void customize(QuerydslBindings bindings, QUser root) {
+	default public void customize(QuerydslBindings bindings, QUser user) {
 
+		// TODO: 02 - Binding customizations for Querydsl
+
+		// Customize binding by referring to property
+		bindings.bind(user.firstname).first((path, value) -> path.eq(value));
+
+		// Customize binding by type
 		bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-		bindings.excluding(root.password);
+
+		// Exclude properties from binding
+		bindings.excluding(user.password);
 	}
 }

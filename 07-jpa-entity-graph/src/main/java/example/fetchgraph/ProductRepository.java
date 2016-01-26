@@ -43,6 +43,7 @@ interface ProductRepository extends CrudRepository<Product, Long> {
 	 * @param id
 	 * @return
 	 */
+	// TODO: 01 - Ad-hoc entity graphs
 	@EntityGraph(attributePaths = "tags")
 	Product getOneById(Long id);
 }

@@ -17,6 +17,12 @@ package example.web;
 
 import static org.springframework.validation.ValidationUtils.*;
 
+import example.Password;
+import example.User;
+import example.UserManagement;
+import example.Username;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import java.util.Map;
 
@@ -39,12 +45,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
-import example.Password;
-import example.User;
-import example.UserManagement;
-import example.Username;
-import lombok.RequiredArgsConstructor;
-
 /**
  * A sample controller implementation to showcase Spring Data web support:
  * <ol>
@@ -65,9 +65,9 @@ class UserController {
 	private final ProjectionFactory projections;
 
 	/**
-	 * Equips the model with a {@link Page} of {@link User}s. Spring Data automatically populates the {@link Pageable} from
-	 * request data according to the setup of {@link PageableHandlerMethodArgumentResolver}. Note how the defaults can be
-	 * tweaked by using {@link PageableDefault}.
+	 * Equips the model with a {@link Page} of {@link User}s. Spring Data automatically populates the {@link Pageable}
+	 * from request data according to the setup of {@link PageableHandlerMethodArgumentResolver}. Note how the defaults
+	 * can be tweaked by using {@link PageableDefault}.
 	 * 
 	 * @param pageable will never be {@literal null}.
 	 * @return
@@ -88,6 +88,8 @@ class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public Object register(UserForm userForm, BindingResult binding, Model model) {
+
+		// TODO: 02 - Inbound projections
 
 		userForm.validate(binding, userManagement);
 
@@ -122,17 +124,20 @@ class UserController {
 	/**
 	 * Returns the first page of {@link User}s as JSON representation. Note how we leverage the {@link ProjectionFactory}
 	 * to wrap each result into the {@link UsernamesOnly} projection.
-	 *
 	 * 
-	 * curl -H "Content-type: application/json" -H "Accept: application/json"  http://localhost:8080/users
+	 * <pre>
+	 * curl -H "Content-type: application/json" -H "Accept: application/json" http://localhost:8080/users 
 	 * 
-	 * http --json http://localhost:8080/users 
-
+	 * http --json http://localhost:8080/users
+	 * </pre>
+	 * 
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<? extends Object> getUsers() {
+
+		// TODO: 01 - Projections
 
 		return userManagement.findAll(new PageRequest(0, 10))//
 				.map(user -> projections.createProjection(UsernamesOnly.class, user))//

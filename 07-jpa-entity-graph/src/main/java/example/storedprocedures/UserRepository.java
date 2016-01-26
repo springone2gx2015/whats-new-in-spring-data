@@ -34,6 +34,7 @@ interface UserRepository extends CrudRepository<User, Long> {
 	 * 
 	 * @see User
 	 */
+	// TODO: 02 - Stored procedures
 	@Procedure(name = "User.plus1")
 	Integer plus1BackedByOtherNamedStoredProcedure(Integer arg);
 

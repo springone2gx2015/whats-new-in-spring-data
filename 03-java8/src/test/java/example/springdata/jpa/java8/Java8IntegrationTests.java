@@ -51,6 +51,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class Java8IntegrationTests {
 
+	// TODO: 02 - Support for non-time-zoned JSR-310 types
+
 	@EnableAsync
 	@EntityScan(basePackageClasses = { Java8IntegrationTests.class, Jsr310JpaConverters.class })
 	@EnableJpaAuditing
@@ -128,6 +130,8 @@ public class Java8IntegrationTests {
 
 		repository.save(new Customer("Customer1", "Foo"));
 		repository.save(new Customer("Customer2", "Bar"));
+
+		// TODO: 05 - Support for CompletableFuture
 
 		CompletableFuture<Void> future = repository.readAllBy().thenAccept(customers -> {
 

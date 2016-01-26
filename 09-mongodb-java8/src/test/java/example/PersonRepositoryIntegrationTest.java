@@ -76,6 +76,8 @@ public class PersonRepositoryIntegrationTest {
 	@Test
 	public void shouldPerformConversionDuringJava8StreamProcessing() {
 
+		// TODO: 01 - Support for Streams
+
 		try (Stream<Person> result = repository.findAllByCustomQueryWithStream()) {
 			result.forEach(System.out::println);
 		}

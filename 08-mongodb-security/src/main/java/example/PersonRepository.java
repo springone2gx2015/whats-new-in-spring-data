@@ -27,6 +27,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 interface PersonRepository extends CrudRepository<Person, String> {
 
+	// TODO: 01 - Spring security integration
 	@Query("{ id : ?#{hasRole('ROLE_ADMIN') ? '{ $exists : true }' : principal.id }}")
 	List<Person> findAllForCurrentUserById();
 }
