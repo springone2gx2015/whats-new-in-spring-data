@@ -18,10 +18,14 @@ package example;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import redis.embedded.RedisServer;
+
 import java.util.Arrays;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +35,6 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import redis.embedded.RedisServer;
-
 /**
  * @author Thomas Darimont
  */
@@ -40,7 +42,7 @@ import redis.embedded.RedisServer;
 @SpringApplicationConfiguration(RedisTestConfiguration.class)
 public class RedisRepositoryTests {
 
-	RedisServer redisServer;
+	static RedisServer redisServer;
 
 	@Autowired RedisConnectionFactory redisConnectionFactory;
 	@Autowired RedisOperations<String, String> redis;
@@ -48,29 +50,31 @@ public class RedisRepositoryTests {
 
 	@Autowired PersonRepository repository;
 
-	@Before
-	public void setup() throws Exception {
-
+	@BeforeClass
+	public static void startServer() throws Exception {
 		redisServer = new RedisServer(6379);
 		redisServer.start();
+	}
 
+	@Before
+	public void setup() {
 		kvTemplate.delete(Person.class);
 		kvTemplate.delete(City.class);
 	}
 
-	@After
-	public void teardown() {
+	@AfterClass
+	public static void shutdownServer() {
 		redisServer.stop();
 	}
 
 	@Test
+	@Ignore
 	public void simpleFindByMultipleProperties() {
 
 		Person egwene = new Person();
 		egwene.firstname = "egwene";
 		egwene.lastname = "al'vere";
 		egwene.city = new City("new york");
-		
 
 		Person marin = new Person();
 		marin.firstname = "marin";
