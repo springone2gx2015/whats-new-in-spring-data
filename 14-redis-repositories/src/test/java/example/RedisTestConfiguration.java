@@ -15,6 +15,8 @@
  */
 package example;
 
+import example.RedisTestConfiguration.CustomIndexConfiguration;
+
 import java.util.Arrays;
 
 import javax.annotation.PreDestroy;
@@ -27,11 +29,10 @@ import org.springframework.data.redis.core.index.RedisIndexDefinition;
 import org.springframework.data.redis.core.index.SimpleIndexDefinition;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
-import example.RedisTestConfiguration.CustomIndexConfiguration;
-
 /**
  * @author Thomas Darimont
  * @author Oliver Gierke
+ * @author Christoph Strobl
  */
 @SpringBootApplication
 @EnableRedisRepositories(indexConfiguration = CustomIndexConfiguration.class)
