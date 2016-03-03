@@ -17,7 +17,7 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-redis</artifactId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 <!-- 			<exclusions> -->
 <!-- 				<exclusion> -->
 <!-- 					<artifactId>jedis</artifactId> -->

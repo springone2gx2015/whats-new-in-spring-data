@@ -26,7 +26,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.mysema.query.types.path.StringPath;
+import com.querydsl.core.types.dsl.StringPath;
 
 /**
  * Repository interface for out-of-the-box paginating access to {@link Store}s and a query method to find stores by
@@ -39,7 +39,8 @@ public interface StoreRepository extends PagingAndSortingRepository<Store, Strin
 		QuerydslBinderCustomizer<QStore> {
 
 	@RestResource(rel = "by-location")
-	Page<Store> findByAddressLocationNear(@Param("location") Point location, @Param("distance") Distance distance, Pageable pageable);
+	Page<Store> findByAddressLocationNear(@Param("location") Point location, @Param("distance") Distance distance,
+			Pageable pageable);
 
 	/**
 	 * Tweak the Querydsl binding if collection resources are filtered.
