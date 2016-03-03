@@ -20,7 +20,7 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.repository.CrudRepository;
 
-import com.mysema.query.types.path.StringPath;
+import com.querydsl.core.types.dsl.StringPath;
 
 /**
  * Repository to manage {@link User}s. Also implements {@link QueryDslPredicateExecutor} to enable predicate filtering
